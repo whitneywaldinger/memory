@@ -1,0 +1,117 @@
+/*
+  Name: Whitney Waldinger
+  Date: 4/5/2024
+  Section: CSE 154 AC with Kathryn Aislinn Koehler & Rasmus Makiniemi
+
+  This is the styles.css page for my online portfolio. It is used by all pages
+  in my portfolio. It has a blue, black and white theme. It also includes the
+  styling for the navigation bar found at the top of every page of my online
+  portfolio.
+ */
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+}
+
+/* I used this source to help me create my top navigation bar
+  https://www.w3schools.com/howto/howto_js_topnav.asp */
+
+nav {
+  background-color: lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav button {
+  background-color: lightgrey;
+  border: none;
+  padding: 16px;
+}
+
+nav button:hover {
+  background-color: rgb(114, 173, 241);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Upload Styles */
+
+article > section {
+  width: 60%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  background-color: rgb(114, 173, 241);
+  padding: 20px;
+}
+
+form {
+  background-color: rgb(134, 186, 246);
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input {
+  padding: 5px;
+  margin-top: 10px;
+  vertical-align: top;
+}
+
+#name, #title {
+  width: 200px;
+}
+
+#description {
+  width: 400px;
+  height: 200px;
+  align-self: flex-start;
+}
+
+#upload-btn {
+  position: absolute;
+  top: 21%;
+  right: 22%;
+}
+
+/* main page */
+
+#image-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#random-img {
+  max-height: 40%;
+  max-width: 40%;
+  background-color: white;
+  padding: 10px;
+  border: solid rgb(114, 173, 241) 25px;
+  border-radius: 10px;
+}
+
+#generate-btn {
+  margin: 10px;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+  HTML for SET! Card Game for CSE 154 HW2.
+  DO NOT MODIFY THIS HTML. MODIFICATIONS MAKE YOU INELIGIBLE FOR FULL CREDIT
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>GP Memories!</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <header>
+      <!-- I used this source to help me create my top navigation bar
+    https://www.w3schools.com/howto/howto_js_topnav.asp -->
+    <nav>
+      <button id="gallery">Memories!</button>
+      <section>
+        <button id="find">Find Memory</button>
+        <button id="add">Add Memory</button>
+      </section>
+    </nav>
+    </header>
+    <main>
+      <article id="gallery-view">
+        <h1>Our Favorite Memories!</h1>
+        <section id="image-container">
+          <img id="random-img" src="./images/formal.jpg" alt="Randomly Generated Image">
+          <button id="generate-btn">Generate Random Memory</button>
+        </section>
+      </article>
+      <article id="search-view" class="hidden">
+        <h1>Search for a Specific Memory!</h1>
+        <!-- search bar to search for a specific memory -->
+        <section id="search-bar">
+          <input type="text" placeholder="Type word here...">
+          <!-- Image found at https://endlessicons.com/free-icons/search-icon-2/ -->
+          <button type="button">Search</button>
+        </section>
+        <!-- memories show up liek blog posts -->
+      </article>
+      <article id="upload-view" class="hidden">
+        <h1>Upload One of Your Favorite Memories!</h1>
+        <!-- form view with a way to upload a memory -->
+        <section>
+          <form>
+            <label>Your Name:<input id='name' name="name" type='text' required></label>
+            <label>Memory Title:<input id='title' name="title" type='text' required></label>
+            <label>Describe the Memory:<input id='description' name="description" type='text' required></label>
+            <label><input id='photo' name='photo' type='file' required></label>
+            <button id='upload-btn'>Upload</button>
+          </form>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
