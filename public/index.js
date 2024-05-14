@@ -6,7 +6,10 @@
  *  This is the index.js file for my fourth create project.
  */
 
-"use strict";
+// http://localhost:8000/index.html
+// http://localhost:8000
+
+'use strict';
 
 (function() {
 
@@ -76,7 +79,7 @@
 
     // send form data to the server-side
     try {
-      let res = await fetch('/upload', {
+      let res = await fetch('http://localhost:8000/upload', {
         method: 'POST',
         body: params
       });
@@ -95,14 +98,14 @@
 
   async function generateRandomImage() {
     try {
-      let res = await fetch('/upload');
+      let res = await fetch('/generate');
       await statusCheck(res);
       let imgData = await res.json();
-      let randomImage = id('random-image');
-      randomImage.src = '/images/' + imgData['img-name'];
+      console.log(imgData);
+      /* let randomImage = id('random-image');
+      randomImage.src = '/images/' + imgData['img-name']; */
     } catch (error) {
       console.error(error);
-      alert('Failed to generate random image');
     }
   };
 
