@@ -24,6 +24,7 @@
     id("add").addEventListener("click", uploadView);
     id("upload-btn").addEventListener("click", uploadMemory);
     id("generate-btn").addEventListener("click", generateRandomImage);
+    qs('#search-bar button').addEventListener("click", searchMemories);
   }
 
   /**
@@ -92,6 +93,9 @@
     }
   }
 
+  /**
+   * generate random images
+   */
   async function generateRandomImage() {
     try {
       let res = await fetch('/generate');
@@ -103,6 +107,56 @@
       console.error("error with generate");
     }
   };
+
+  /**
+   * search memories
+   */
+  async function searchMemories() {
+    let query = new FormData();
+    query.append('query', qs('#search-bar input').value);
+
+    try {
+      const res = await fetch('/search', {
+        method: 'POST',
+        body: query
+      });
+      await statusCheck(res);
+      let data = await res.json();
+      console.log("data = " + data);
+      publishResults(data);
+    } catch(err) {
+      console.error(err);
+    }
+  }
+
+  /**
+   * displays all memory results
+   * @param {*} data - memories containing the search words
+   */
+  function publishResults(data) {
+    let memContainer = id('memory-container');
+    memContainer.replaceChildren();
+    data.forEach(memory => {
+      let post = document.createElement('section');
+
+      let title = document.createElement('h2');
+      title.textContent = memory.title;
+      post.appendChild(title);
+
+      let description = document.createElement('p');
+      description.textContent = memory.description;
+      post.appendChild(description);
+
+      let image = document.createElement('img');
+      image.src = './images/' + memory.img;
+      image.alt = "Image of " + memory.title;
+      post.appendChild(image);
+
+      post.classList.add('memory');
+
+      memContainer.append(post);
+    });
+  }
 
   /**
    * Helper function to return the response's result text if successful, otherwise
