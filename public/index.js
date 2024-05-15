@@ -6,8 +6,6 @@
  *  This is the index.js file for my fourth create project.
  */
 
-// http://localhost:8000/index.html
-// http://localhost:8000
 
 'use strict';
 
@@ -18,7 +16,8 @@
   /**
    * Init Function
    */
-  function init() {
+  async function init() {
+    await generateRandomImage();
     // add event listeners to each button
     id("gallery").addEventListener("click", memoryView);
     id("find").addEventListener("click", searchView);
@@ -30,7 +29,7 @@
   /**
    * update memory view function
    */
-  function memoryView() {
+  async function memoryView() {
     id("gallery-view").classList.remove("hidden");
     id("search-view").classList.add("hidden");
     id("upload-view").classList.add("hidden");
@@ -57,43 +56,40 @@
   /**
    * upload memory function
    */
-  async function uploadMemory() {
+  async function uploadMemory(event) {
+    event.preventDefault(); // prevent from autmatically reloading
     // form data
     const name = id('name').value;
-    const date = id('date').value;
+    const title = id('title').value;
     const description = id('description').value;
     const photo = id('photo').files[0];
 
     // check if all input is valid
-    if (name && date && description && photo) {
+    if (name && title && description && photo) {
+      console.log("all inputs exist!");
+
       const params = new FormData();
       params.append('name', name);
-      params.append('date', date);
+      params.append('title', title);
       params.append('description', description);
       params.append('photo', photo);
+
+      try {
+        let res = await fetch('/upload', {
+          method: 'POST',
+          body: params
+        });
+        await statusCheck(res);
+        let message = await res.text();
+        console.log("message =" + message);
+      } catch(err) {
+        console.error("error with upload");
+      }
     } else {
       // throw some message that highlights the empy cells red and
       // says that everything needs to be filled out
-      console.log("error with form input");
+      console.log("error with upload");
     }
-
-    // send form data to the server-side
-    try {
-      let res = await fetch('http://localhost:8000/upload', {
-        method: 'POST',
-        body: params
-      });
-      await statusCheck(res);
-      let data = await res.json();
-      addMemory(data);
-      console.log("memory uploaded successfully");
-    } catch(err) {
-      console.error(err);
-    }
-  }
-
-  function addMemory(data) {
-    console.log(data);
   }
 
   async function generateRandomImage() {
@@ -101,11 +97,10 @@
       let res = await fetch('/generate');
       await statusCheck(res);
       let imgData = await res.json();
-      console.log(imgData);
-      /* let randomImage = id('random-image');
-      randomImage.src = '/images/' + imgData['img-name']; */
+      let randomImage = id('random-img');
+      randomImage.src = './images/' + imgData.img;
     } catch (error) {
-      console.error(error);
+      console.error("error with generate");
     }
   };
 

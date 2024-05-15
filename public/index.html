@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-  HTML for SET! Card Game for CSE 154 HW2.
-  DO NOT MODIFY THIS HTML. MODIFICATIONS MAKE YOU INELIGIBLE FOR FULL CREDIT
--->
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -26,7 +22,7 @@
       <article id="gallery-view">
         <h1>Our Favorite Memories!</h1>
         <section id="image-container">
-          <img id="random-img" src="./images/formal.jpg" alt="Randomly Generated Image">
+          <img id="random-img" src="" alt="Randomly Generated Image">
           <button id="generate-btn">Generate Random Memory</button>
         </section>
       </article>
@@ -50,7 +46,7 @@
             <label>Describe the Memory:
               <input id='description' name="description" type='text' required>
             </label>
-            <label><input id='photo' name='photo' type='file' required></label>
+            <label><input id='photo' name='photo' enctype="multipart/form-data" type='file' required></label>
             <button id='upload-btn'>Upload</button>
           </form>
         </section>
